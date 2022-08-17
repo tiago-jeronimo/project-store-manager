@@ -10,6 +10,9 @@ const getProducts = async () => {
   return result;
 };
 
+// getProducts().then((data) => {
+//   console.log(data);
+// });
 const getProductById = async (id) => {
   const [result] = await connection.execute(`
     SELECT id, name 
@@ -21,12 +24,21 @@ const getProductById = async (id) => {
   return result[0];
 };
 
-// getProducts().then((data) => {
+// getProductById(2).then((data) => {
 //   console.log(data);
 // });
 
-// getProductById(2).then((data) => {
-//   console.log(data);
-// });json.message
+const postProduct = async ({ name: product }) => {
+  const [result] = await connection.execute(`
+  INSERT INTO StoreManager.products (name) VALUES (?);`, [product]);
+  return {
+    id: result.insertId,
+    name: product,
+  };
+};
 
-module.exports = { getProducts, getProductById };
+// postProduct({ name: 'Robocop' }).then((data) => {
+//   console.log(data);
+// });
+
+module.exports = { getProducts, getProductById, postProduct };

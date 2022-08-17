@@ -21,8 +21,10 @@ async function getProductById(req, res) {
 //   console.log(data);
 // });
 
-module.exports = {
-  getProducts,
-};
+async function postProduct(req, res) {
+  const name = req.body;
+  const response = await SERVICE.postProduct(name);
+  res.status(201).json(response);
+}
 
-module.exports = { getProducts, getProductById };
+module.exports = { getProducts, getProductById, postProduct };

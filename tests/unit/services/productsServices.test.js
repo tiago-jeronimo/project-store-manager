@@ -127,4 +127,32 @@ describe(' CAMADA SERVICE - Testa camada Service para requição de produtos', (
       });
     })
   });
+  describe(' 3 - Ao fazer requisição para método POST em "/products"', () => {
+    describe(' ✅ - Se o método ocorrer tudo bem', () => {
+
+      before(() => {
+        const products = {
+          id: 4,
+          name: "Robocop",
+        };
+        sinon.stub(Model, 'postProduct').resolves(products)
+      })
+
+      after(() => {
+        Model.postProduct.restore();
+      })
+
+
+
+      it(" 3.1 - Espera que o tipo de retorno seja um objeto", async () => {
+        const response = await Service.postProduct({ name: "Robocop" })
+        expect(response).to.be.an('object');
+      })
+      it(' 3.2 -  Se dentro do retorno existe um objeto com as keys "id" e "name"', async () => {
+        const response = await Service.postProduct({ name: "Robocop" })
+        expect(response).to.have.a.property('id')
+        expect(response).to.have.a.property('name')
+      })
+    })
+  })
 });

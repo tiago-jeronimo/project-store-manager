@@ -29,4 +29,14 @@ async function getProductById(id) {
 // getProducts().then((data) => {
 //   console.log(data);
 // });
-module.exports = { getProducts, getProductById };
+
+async function postProduct(name) {
+  const response = await Model.postProduct(name);
+  return response;
+}
+
+// postProduct({ name: 'Robocop' }).then((data) => {
+//   console.log(data);
+// });
+
+module.exports = { getProducts, getProductById, postProduct };

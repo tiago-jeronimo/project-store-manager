@@ -35,8 +35,12 @@ async function postProduct(name) {
   return response;
 }
 
+async function updateProduct(id, name) {
+  const response = await Model.updateProduct(id, name);
+  return response;
+}
 // postProduct({ name: 'Robocop' }).then((data) => {
 //   console.log(data);
 // });
 
-module.exports = { getProducts, getProductById, postProduct };
+module.exports = { getProducts, getProductById, postProduct, updateProduct };

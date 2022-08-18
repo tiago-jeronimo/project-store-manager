@@ -1,5 +1,5 @@
 const SERVICE = require('../services/productsServices');
-
+  
 async function getProducts(_req, res) {
   const products = await SERVICE.getProducts();
   if (products.message) {
@@ -27,4 +27,12 @@ async function postProduct(req, res) {
   res.status(201).json(response);
 }
 
-module.exports = { getProducts, getProductById, postProduct };
+async function updateProduct(req, res) {
+  const { name } = req.body;  
+  const { id } = req.params;
+  const result = await SERVICE.updateProduct(id, name);
+
+  res.status(200).json(result);
+}
+
+module.exports = { getProducts, getProductById, postProduct, updateProduct };

@@ -19,4 +19,9 @@ const exists = async (req, res, next) => {
   next();
 };
 
+// const deleteValidadte = async (req, res, next) => {
+//   const { id } = req.params;
+//   const IsExists = await MODEL.getProductById(id);
+// }
+
 module.exports = { productMiddleware, exists };

@@ -39,8 +39,12 @@ async function updateProduct(id, name) {
   const response = await Model.updateProduct(id, name);
   return response;
 }
+
+async function deleteProduct(id) {
+ await Model.deleteProduct(id);
+}
 // postProduct({ name: 'Robocop' }).then((data) => {
 //   console.log(data);
 // });
 
-module.exports = { getProducts, getProductById, postProduct, updateProduct };
+module.exports = { getProducts, getProductById, postProduct, updateProduct, deleteProduct };
